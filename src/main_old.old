@@ -1,0 +1,180 @@
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include<glm/glm.hpp>
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>
+#include <cmath>
+#include <iostream>
+#include <vector>
+#include <chrono>
+
+#include "shaderClass.h"
+#include "VAO.h"
+#include "VBO.h"
+#include "EBO.h"
+#include "MMRectangle.h"
+#include "MMParticleMatrix.h"
+#include "MMSand.h"
+#include "MMSand3d.h"
+#include "MMStone.h"
+#include "MMStone3d.h"
+#include "MMGraphicsSingleton.h"
+#include "MMCamera.h"
+
+
+
+int main()
+{
+    std::vector<float> vertices = {
+        -0.9f, -0.9f, 0.0f,
+        0.9f, -0.9f, 0.0f,
+        -1.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, 0.0f,
+    };
+    std::vector<GLfloat> colors = {
+        0.8f, 0.3f, 0.02f,
+        0.8f, 0.3f, 0.02f,
+        1.0f, 0.6f, 0.32f,
+        0.9f, 0.45f, 0.17f,
+        0.8f, 0.3f, 0.02f,
+        0.8f, 0.3f, 0.02f,
+        1.0f, 0.6f, 0.32f,
+        0.9f, 0.45f, 0.17f
+    };
+    std::vector<unsigned int> indices = {
+        0, 1, 2,
+        1, 2, 3
+    };
+
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    GLFWwindow *window = glfwCreateWindow(800, 800, "Engine", NULL, NULL);
+
+    if (window == NULL)
+    {
+        std::cout << "Failed to create window" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+
+    glfwMakeContextCurrent(window);
+    gladLoadGL();
+    glViewport(0, 0, 800, 800);
+    Shader shaderProgram("c:\\Users\\Martin\\WORKSPACE\\VSC\\3dG\\resource\\shaders\\default.vert",
+                         "c:\\Users\\Martin\\WORKSPACE\\VSC\\3dG\\resource\\shaders\\default.frag");
+
+
+
+    const int particleSize = 8;
+    const int matrixSize = 800 / particleSize;
+
+
+    MMGraphicsSingleton& mmGraphics = MMGraphicsSingleton::getInstance();
+
+    MMParticleMatrix particleMatrix(matrixSize, matrixSize);
+
+    int idPar = 1;
+
+    const int STONE_WALL_Y = 75;
+    for(int i = 0; i < matrixSize; i++){
+        MMStone3d* mmStone3d = new MMStone3d(i * particleSize, STONE_WALL_Y * particleSize, 0, 8);
+        particleMatrix.setElementAtIndex(i, STONE_WALL_Y, mmStone3d);
+        mmGraphics.addEntity(mmStone3d->getCube());
+        idPar++;
+    }
+
+    int newSandPosX = 400;
+    int counter = 0;
+
+
+	glEnable(GL_DEPTH_TEST);
+	MMCamera camera(800, 800, glm::vec3(0.0f, 0.0f, 2.0f));
+
+    while (!glfwWindowShouldClose(window))
+    {
+        counter++;
+        newSandPosX = rand()%2 == 1 ? newSandPosX + particleSize : newSandPosX - particleSize;
+        if(newSandPosX <= 50 || newSandPosX >= 750){
+            newSandPosX = 400;
+        }
+        if(particleMatrix.get(newSandPosX/particleSize, 10) == nullptr && counter == 5){
+            MMSand3d* newSand3d = new MMSand3d(newSandPosX, 80, 0, particleSize, idPar);
+            particleMatrix.setElementAtIndex(newSandPosX/particleSize, 10, newSand3d);
+            mmGraphics.addEntity(newSand3d->getCube());
+            idPar++;
+            counter = 0;
+        }
+        MMParticle* par;
+        for (int i = matrixSize - 1; i >= 0; i--) {
+            for (int j = matrixSize - 1; j >= 0; j--) {
+                par = particleMatrix.get(i, j);
+                if (par != nullptr) {
+                    if(par->getSkipUpdate()) continue;
+                    par->update(&particleMatrix);
+                }
+            }
+        }
+        delete(par);
+
+        //auto start = std::chrono::high_resolution_clock::now();
+
+        vertices = mmGraphics.getVerticesAll();
+        indices = mmGraphics.getIndicesAll();
+        colors = mmGraphics.getColorsAll();
+       
+        //auto stop = std::chrono::high_resolution_clock::now();
+        //auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+        camera.Inputs(window);
+		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
+
+        VAO VAO1;
+        VAO1.Bind();
+
+        GLfloat* verticesArr = &vertices[0];
+        GLfloat* colorsArr = &colors[0];
+        GLuint* indicesArr = &indices[0];
+
+
+        VBO VBO1(verticesArr, vertices.size() * sizeof(GLfloat));
+        VBO VBO2(colorsArr, colors.size() * sizeof(GLfloat));
+        EBO EBO1(indicesArr, indices.size() * sizeof(GLint));
+
+        VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 3 * sizeof(float), (void *)0);
+        VAO1.LinkAttrib(VBO2, 1, 3, GL_FLOAT, 3 * sizeof(float), (void *)0);
+        VAO1.Unbind();
+        VBO1.Unbind();
+        VBO2.Unbind();
+        EBO1.Unbind();
+
+        glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        shaderProgram.Activate();
+
+        VAO1.Bind();
+        glDrawElements(GL_TRIANGLES, 36 * (idPar - 1), GL_UNSIGNED_INT, 0);
+        glfwSwapBuffers(window);
+
+        glfwPollEvents();
+
+        VAO1.Delete();
+        VBO1.Delete();
+        EBO1.Delete();
+        VBO2.Delete();
+
+        //std::cout << duration.count() << std::endl;
+
+
+    }
+    shaderProgram.Delete();
+    // I hope it is delete by deleting the matrix
+    //delete(sand1);
+    //delete(sand2);
+
+    glfwDestroyWindow(window);
+    glfwTerminate();
+    return 0;
+}
