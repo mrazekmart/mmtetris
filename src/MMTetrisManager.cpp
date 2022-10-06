@@ -140,27 +140,13 @@ void MMTetrisManager::update(GLFWwindow *window)
     }
     if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS && rotate)
     {
-        if (this->activePiece->pieces->at(0)->positionX >= 2 * particleSize &&
-            this->activePiece->pieces->at(0)->positionX <= (this->blocksWidth - 3) * particleSize)
-        {
-            if (this->activePiece->pieceType == 5 &&
-                this->activePiece->pieces->at(0)->positionX >= (this->blocksWidth - 3) * particleSize)
-            {
-                return;
-            }
-
-            this->roratePieceRight();
-            this->rotate = false;
-        }
+        this->roratePieceRight();
+        this->rotate = false;
     }
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS && rotate)
     {
-        if (this->activePiece->pieces->at(0)->positionX >= 2 * particleSize &&
-            this->activePiece->pieces->at(0)->positionX <= (this->blocksWidth - 3) * particleSize)
-        {
-            this->roratePieceLeft();
-            this->rotate = false;
-        }
+        this->roratePieceLeft();
+        this->rotate = false;
     }
 }
 
