@@ -9,6 +9,7 @@ class MMGraphics
 public:
     MMGraphics();
     void addEntity(MMGraphics *entity);
+
 private:
     std::vector<float> vertices;
     std::vector<unsigned int> indices;

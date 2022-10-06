@@ -21,8 +21,6 @@ void MMTetrisManager::createWalls()
             if (i == 0 || i == this->blocksWidth - 1 || j == 0 || j == this->blocksHeight - 1)
             {
                 MMStone3d *mmStone3d = new MMStone3d(i * particleSize, j * particleSize, 0, this->particleSize);
-                // TODO:
-                // MMGraphicsSingleton::getInstance().addEntity(mmStone3d->getCube());
                 this->blocksCount++;
                 this->setElementAtIndex(i, j, mmStone3d);
 
@@ -142,13 +140,27 @@ void MMTetrisManager::update(GLFWwindow *window)
     }
     if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS && rotate)
     {
-        this->roratePieceRight();
-        this->rotate = false;
+        if (this->activePiece->pieces->at(0)->positionX >= 2 * particleSize &&
+            this->activePiece->pieces->at(0)->positionX <= (this->blocksWidth - 3) * particleSize)
+        {
+            if (this->activePiece->pieceType == 5 &&
+                this->activePiece->pieces->at(0)->positionX >= (this->blocksWidth - 3) * particleSize)
+            {
+                return;
+            }
+
+            this->roratePieceRight();
+            this->rotate = false;
+        }
     }
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS && rotate)
     {
-        this->roratePieceLeft();
-        this->rotate = false;
+        if (this->activePiece->pieces->at(0)->positionX >= 2 * particleSize &&
+            this->activePiece->pieces->at(0)->positionX <= (this->blocksWidth - 3) * particleSize)
+        {
+            this->roratePieceLeft();
+            this->rotate = false;
+        }
     }
 }
 
@@ -184,8 +196,9 @@ void MMTetrisManager::checkForFullLines()
             {
                 for (int l = 1; l < this->blocksWidth - 1; l++)
                 {
-                    MMStone3d* stone = this->getElementAtIndex(l, k - 1);
-                    if(stone){
+                    MMStone3d *stone = this->getElementAtIndex(l, k - 1);
+                    if (stone)
+                    {
                         stone->moveDown();
                     }
                     this->setElementAtIndex(l, k, this->getElementAtIndex(l, k - 1));
@@ -241,11 +254,11 @@ void MMTetrisManager::movePieceLeft()
 
 void MMTetrisManager::roratePieceLeft()
 {
-    this->activePiece->rorateLeft();
+    this->activePiece->rorateLeft(this);
 }
 void MMTetrisManager::roratePieceRight()
 {
-    this->activePiece->rotateRight();
+    this->activePiece->rotateRight(this);
 }
 MMStone3d *MMTetrisManager::getElementAtIndex(int x, int y)
 {

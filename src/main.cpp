@@ -22,41 +22,21 @@
 #include "MMCamera.h"
 #include "MMTetrisManager.h"
 
+const int WINDOW_HEIGHT = 800;
+const int WINDOW_WIDTH = 800;
+
 int main()
 {
-    std::vector<float> vertices = {
-        -0.9f,
-        -0.9f,
-        0.0f,
-        0.9f,
-        -0.9f,
-        0.0f,
-        -1.0f,
-        1.0f,
-        0.0f,
-        0.5f,
-        0.5f,
-        0.0f,
-    };
-    std::vector<GLfloat> colors = {
-        0.8f, 0.3f, 0.02f,
-        0.8f, 0.3f, 0.02f,
-        1.0f, 0.6f, 0.32f,
-        0.9f, 0.45f, 0.17f,
-        0.8f, 0.3f, 0.02f,
-        0.8f, 0.3f, 0.02f,
-        1.0f, 0.6f, 0.32f,
-        0.9f, 0.45f, 0.17f};
-    std::vector<unsigned int> indices = {
-        0, 1, 2,
-        1, 2, 3};
+    std::vector<float> vertices;
+    std::vector<GLfloat> colors;
+    std::vector<unsigned int> indices;
 
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow *window = glfwCreateWindow(800, 800, "Engine", NULL, NULL);
+    GLFWwindow *window = glfwCreateWindow(WINDOW_HEIGHT, WINDOW_WIDTH, "MMTetris", NULL, NULL);
 
     if (window == NULL)
     {
@@ -67,18 +47,19 @@ int main()
 
     glfwMakeContextCurrent(window);
     gladLoadGL();
-    glViewport(0, 0, 800, 800);
+    glViewport(0, 0, WINDOW_HEIGHT, WINDOW_WIDTH);
     Shader shaderProgram("c:\\Users\\Martin\\WORKSPACE\\VSC\\3dG\\resource\\shaders\\default.vert",
                          "c:\\Users\\Martin\\WORKSPACE\\VSC\\3dG\\resource\\shaders\\default.frag");
 
     const int particleSize = 24;
-    const int matrixSize = 800 / particleSize;
+    const int cubeIndices = 36;
+    const int matrixSize = WINDOW_HEIGHT / particleSize;
 
     MMGraphicsSingleton &mmGraphics = MMGraphicsSingleton::getInstance();
     MMTetrisManager mmTetris(matrixSize / 2, matrixSize, particleSize);
 
     glEnable(GL_DEPTH_TEST);
-    MMCamera camera(800, 800, glm::vec3(0.0f, 0.0f, 2.0f));
+    MMCamera camera(WINDOW_HEIGHT, WINDOW_WIDTH, glm::vec3(0.0f, 0.0f, 2.0f));
 
     auto startMoveDown = std::chrono::high_resolution_clock::now();
     auto startMoveSide = std::chrono::high_resolution_clock::now();
@@ -137,7 +118,7 @@ int main()
         shaderProgram.Activate();
 
         VAO1.Bind();
-        glDrawElements(GL_TRIANGLES, 36 * mmTetris.blocksCount, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, cubeIndices * mmTetris.blocksCount, GL_UNSIGNED_INT, 0);
         glfwSwapBuffers(window);
 
         glfwPollEvents();

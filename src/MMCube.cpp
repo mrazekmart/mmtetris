@@ -1,4 +1,4 @@
-#include"MMCube.h"
+#include "MMCube.h"
 const int SIZE = 800;
 
 MMCube::MMCube(float _posX, float _posY, float _posZ, float _width, float _heigh, float _depth)
@@ -64,7 +64,6 @@ std::vector<float> MMCube::mmCalculateVertices()
     vertices.push_back(yBackUp);
     vertices.push_back(zBackUp);
 
-
     // left-bottom-front
     vertices.push_back(xBackUp);
     vertices.push_back(y);
@@ -74,7 +73,6 @@ std::vector<float> MMCube::mmCalculateVertices()
     vertices.push_back(x);
     vertices.push_back(y);
     vertices.push_back(zBackUp);
-
 
     // left-top-back
     vertices.push_back(xBackUp);
@@ -86,12 +84,12 @@ std::vector<float> MMCube::mmCalculateVertices()
     vertices.push_back(yBackUp);
     vertices.push_back(z);
 
-    //left-bottom-back
+    // left-bottom-back
     vertices.push_back(xBackUp);
     vertices.push_back(y);
     vertices.push_back(z);
 
-    //right-bottom-back
+    // right-bottom-back
     vertices.push_back(x);
     vertices.push_back(y);
     vertices.push_back(z);

@@ -51,6 +51,6 @@ void MMStone3d::moveLeft()
     this->positionX -= this->particleSize;
     this->updateCube();
 }
-void MMStone3d::updateVertices(){
-    
+void MMStone3d::updateVertices()
+{
 }

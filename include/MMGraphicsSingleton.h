@@ -1,7 +1,7 @@
 #ifndef CLASS_MM_GRAPHICS_SINGLETON
 #define CLASS_MM_GRAPHICS_SINGLETON
 
-#include<vector>
+#include <vector>
 #include "MMGraphics.h"
 
 class MMGraphicsSingleton
@@ -21,7 +21,6 @@ public:
     std::vector<float> colorsAll;
 
 private:
-
     std::vector<MMGraphics *> *entities;
     int indicesCount = 0;
 

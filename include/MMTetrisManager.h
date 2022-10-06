@@ -19,6 +19,8 @@ public:
     bool moveSide = true;
     bool moveDown = false;
     bool rotate = true;
+    MMStone3d *getElementAtIndex(int x, int y);
+    void setElementAtIndex(int x, int y, MMStone3d *element);
     void update(GLFWwindow *window);
 
 private:
@@ -46,8 +48,6 @@ private:
     std::vector<MMStone3d *> *matrix;
     int matrixFinishedIndices = 0;
     int matrixWallsIndices = 0;
-    MMStone3d* getElementAtIndex(int x, int y);
-    void setElementAtIndex(int x, int y, MMStone3d* element);
 
     int matrixId[50][100];
     int matrixIdCount = 0;
