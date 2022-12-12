@@ -11,10 +11,10 @@ class MMSand : public MMParticle
 public:
     MMSand(int posX, int posY, int particleSize, int id);
     ~MMSand();
-    MMRectangle *getRect();
-    void update(MMParticleMatrix *particleMartix);
-    bool getSkipUpdate();
-    int getMaterial();
+    MMRectangle *GetRect();
+    void Update(MMParticleMatrix *particleMartix);
+    bool GetSkipUpdate();
+    int GetMaterial();
 
 private:
     int positionX, positionY, particleSize;
@@ -23,7 +23,7 @@ private:
     int material = 1;
     bool skipUpdate = false;
     MMRectangle *mmRectangle;
-    void updateRectangle();
+    void UpdateRectangle();
 };
 
 #endif

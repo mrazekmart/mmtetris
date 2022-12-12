@@ -124,31 +124,31 @@ MMTetrisPiece::MMTetrisPiece(int posX, int posY, int particleSize)
     this->pieces->push_back(mmStone3d4);
 }
 
-void MMTetrisPiece::moveDown()
+void MMTetrisPiece::MoveDown()
 {
     for (MMStone3d *stone : *this->pieces)
     {
-        stone->moveDown();
+        stone->MoveDown();
     }
-    this->updateVertices();
+    this->UpdateVertices();
 }
-void MMTetrisPiece::moveLeft()
+void MMTetrisPiece::MoveLeft()
 {
     for (MMStone3d *stone : *this->pieces)
     {
-        stone->moveLeft();
+        stone->MoveLeft();
     }
-    this->updateVertices();
+    this->UpdateVertices();
 }
-void MMTetrisPiece::moveRight()
+void MMTetrisPiece::MoveRight()
 {
     for (MMStone3d *stone : *this->pieces)
     {
-        stone->moveRight();
+        stone->MoveRight();
     }
-    this->updateVertices();
+    this->UpdateVertices();
 }
-void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
+void MMTetrisPiece::RorateLeft(MMTetrisManager *mmTetrisManager)
 {
     switch (this->pieceType)
     {
@@ -157,44 +157,44 @@ void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 4)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 2:
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 3:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -206,68 +206,68 @@ void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 4)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 2:
-            if (this->checkCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 3:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -277,68 +277,68 @@ void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 4)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 2:
-            if (this->checkCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 3:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -349,40 +349,40 @@ void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 2)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 2, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 2, -2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -2, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -2, 2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -392,36 +392,36 @@ void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 2)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 0, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 0, -2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveUp();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveUp();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 0, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 0, 2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveDown();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveDown();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -431,36 +431,36 @@ void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 2)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 2, 0, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveRight();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveRight();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -2, 0, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveLeft();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveLeft();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase++;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -470,7 +470,7 @@ void MMTetrisPiece::rorateLeft(MMTetrisManager *mmTetrisManager)
         break;
     }
 }
-void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
+void MMTetrisPiece::RotateRight(MMTetrisManager *mmTetrisManager)
 {
     switch (this->pieceType)
     {
@@ -479,44 +479,44 @@ void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 4)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase = 3;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 2:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 3:
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -528,68 +528,68 @@ void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 4)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase = 3;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 3:
-            if (this->checkCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 2:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -600,68 +600,68 @@ void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 4)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, 2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase = 3;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 3:
-            if (this->checkCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, -1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 2:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 0, -2, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 2, 0, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -1, 1, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -671,40 +671,40 @@ void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 2)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 2, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 2, -2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase = 1;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -2, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -2, 2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -714,36 +714,36 @@ void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 2)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 0, -2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 0, -2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveUp();
-            this->pieces->at(3)->moveUp();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveUp();
+            this->pieces->at(3)->MoveUp();
             this->piecePhase = 1;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 0, 2, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 0, 2, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveDown();
-            this->pieces->at(3)->moveDown();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveDown();
+            this->pieces->at(3)->MoveDown();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -753,36 +753,36 @@ void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
         switch (this->piecePhase % 2)
         {
         case 0:
-            if (this->checkCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), -1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), 1, -1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), 2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), 2, 0, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveUp();
-            this->pieces->at(1)->moveLeft();
-            this->pieces->at(2)->moveUp();
-            this->pieces->at(2)->moveRight();
-            this->pieces->at(3)->moveRight();
-            this->pieces->at(3)->moveRight();
+            this->pieces->at(1)->MoveUp();
+            this->pieces->at(1)->MoveLeft();
+            this->pieces->at(2)->MoveUp();
+            this->pieces->at(2)->MoveRight();
+            this->pieces->at(3)->MoveRight();
+            this->pieces->at(3)->MoveRight();
             this->piecePhase = 1;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         case 1:
-            if (this->checkCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(1), 1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(2), -1, 1, mmTetrisManager))
                 break;
-            if (this->checkCollision(this->pieces->at(3), -2, 0, mmTetrisManager))
+            if (this->CheckCollision(this->pieces->at(3), -2, 0, mmTetrisManager))
                 break;
-            this->pieces->at(1)->moveDown();
-            this->pieces->at(1)->moveRight();
-            this->pieces->at(2)->moveDown();
-            this->pieces->at(2)->moveLeft();
-            this->pieces->at(3)->moveLeft();
-            this->pieces->at(3)->moveLeft();
+            this->pieces->at(1)->MoveDown();
+            this->pieces->at(1)->MoveRight();
+            this->pieces->at(2)->MoveDown();
+            this->pieces->at(2)->MoveLeft();
+            this->pieces->at(3)->MoveLeft();
+            this->pieces->at(3)->MoveLeft();
             this->piecePhase--;
-            this->updateVertices();
+            this->UpdateVertices();
             break;
         default:
             break;
@@ -793,12 +793,12 @@ void MMTetrisPiece::rotateRight(MMTetrisManager *mmTetrisManager)
     }
 }
 
-void MMTetrisPiece::updateVertices()
+void MMTetrisPiece::UpdateVertices()
 {
     int s = 0;
     for (MMStone3d *stone : *this->pieces)
     {
-        std::vector<float> newVertices = stone->getCube()->getVertices();
+        std::vector<float> newVertices = stone->GetCube()->GetVertices();
         for (int i = 0; i < newVertices.size(); i++)
         {
             MMGraphicsSingleton::getInstance().verticesAll[MMGraphicsSingleton::getInstance().verticesAll.size() - 96 + i + (s * 24)] = newVertices[i];
@@ -807,10 +807,10 @@ void MMTetrisPiece::updateVertices()
     }
 }
 
-bool MMTetrisPiece::checkCollision(MMStone3d *mmStone, int moveX, int moveY, MMTetrisManager *mmTetrisManager)
+bool MMTetrisPiece::CheckCollision(MMStone3d *mmStone, int moveX, int moveY, MMTetrisManager *mmTetrisManager)
 {
 
-    if (mmTetrisManager->getElementAtIndex(mmStone->positionX / this->particleSize + moveX,
+    if (mmTetrisManager->GetElementAtIndex(mmStone->positionX / this->particleSize + moveX,
                                            mmStone->positionY / particleSize + moveY))
     {
         return true;

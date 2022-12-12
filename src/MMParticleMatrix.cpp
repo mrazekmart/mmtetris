@@ -15,12 +15,12 @@ MMParticleMatrix::~MMParticleMatrix()
 		delete (this->matrix);
 	}
 }
-MMParticle *MMParticleMatrix::get(int x, int y)
+MMParticle *MMParticleMatrix::Get(int x, int y)
 {
 	return (*this->matrix)[x + y * width];
 }
 
-void MMParticleMatrix::setElementAtIndex(int x, int y, MMParticle *element)
+void MMParticleMatrix::SetElementAtIndex(int x, int y, MMParticle *element)
 {
 	(*this->matrix)[x + y * width] = element;
 }

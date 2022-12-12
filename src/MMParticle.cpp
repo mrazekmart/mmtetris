@@ -1,11 +1,11 @@
 #include "MMParticle.h"
 
-void MMParticle::update(MMParticleMatrix *particleMatrix){};
-int MMParticle::getMaterial()
+void MMParticle::Update(MMParticleMatrix *particleMatrix){};
+int MMParticle::GetMaterial()
 {
     return this->material;
 }
-bool MMParticle::getSkipUpdate()
+bool MMParticle::GetSkipUpdate()
 {
     return this->skipUpdate;
 }

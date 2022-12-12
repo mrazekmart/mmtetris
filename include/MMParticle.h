@@ -12,9 +12,9 @@ public:
     bool skipUpdate = false;
 
 public:
-    virtual bool getSkipUpdate();
-    virtual int getMaterial();
-    virtual void update(MMParticleMatrix *particleMatrix);
+    virtual bool GetSkipUpdate();
+    virtual int GetMaterial();
+    virtual void Update(MMParticleMatrix *particleMatrix);
 };
 
 #endif

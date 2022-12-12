@@ -10,15 +10,15 @@ class MMStone : public MMParticle
 public:
     MMStone(int posX, int posY, int particleSize);
     ~MMStone();
-    MMRectangle *getRect();
-    void update(MMParticleMatrix *particleMartix);
-    int getMaterial();
+    MMRectangle *GetRect();
+    void Update(MMParticleMatrix *particleMartix);
+    int GetMaterial();
 
 private:
     int positionX, positionY, particleSize;
     int material = 5;
     MMRectangle *mmRectangle;
-    void updateRectangle();
+    void UpdateRectangle();
 };
 
 #endif

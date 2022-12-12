@@ -11,21 +11,21 @@ MMStone::~MMStone()
 {
     delete (this->mmRectangle);
 }
-MMRectangle *MMStone::getRect()
+MMRectangle *MMStone::GetRect()
 {
-    this->updateRectangle();
+    this->UpdateRectangle();
     return this->mmRectangle;
 }
-int MMStone::getMaterial()
+int MMStone::GetMaterial()
 {
     return this->material;
 }
-void MMStone::updateRectangle()
+void MMStone::UpdateRectangle()
 {
     this->mmRectangle->posX = this->positionX;
     this->mmRectangle->posY = this->positionY;
 }
-void MMStone::update(MMParticleMatrix *particleMatrix)
+void MMStone::Update(MMParticleMatrix *particleMatrix)
 {
-    this->updateRectangle();
+    this->UpdateRectangle();
 }

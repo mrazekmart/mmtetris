@@ -11,10 +11,10 @@ public:
 
     MMCube(float posX, float posY, float posZ, float width, float height, float depth);
 
-    std::vector<float> getVertices();
-    std::vector<unsigned int> getIndices();
-    std::vector<float> getColor();
-    int getIndCount();
+    std::vector<float> GetVertices();
+    std::vector<unsigned int> GetIndices();
+    std::vector<float> GetColor();
+    int GetIndCount();
 
 private:
     int indCount = 8;
@@ -35,7 +35,7 @@ private:
             5, 1, 4};
 
     std::vector<float> color;
-    std::vector<float> mmCalculateVertices();
+    std::vector<float> MmCalculateVertices();
 };
 
 #endif

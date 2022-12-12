@@ -11,10 +11,10 @@ class MMSand3d : public MMParticle
 public:
     MMSand3d(int posX, int posY, int posZ, int particleSize, int id);
     ~MMSand3d();
-    MMCube *getCube();
-    void update(MMParticleMatrix *particleMartix);
-    bool getSkipUpdate();
-    int getMaterial();
+    MMCube *GetCube();
+    void Update(MMParticleMatrix *particleMartix);
+    bool GetSkipUpdate();
+    int GetMaterial();
 
 private:
     int positionX, positionY, particleSize;
@@ -23,7 +23,7 @@ private:
     int material = 1;
     bool skipUpdate = false;
     MMCube *mmCube;
-    void updateCube();
+    void UpdateCube();
 };
 
 #endif

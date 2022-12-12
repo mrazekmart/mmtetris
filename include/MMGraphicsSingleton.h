@@ -13,9 +13,9 @@ public:
         return instance;
     }
     void addEntity(MMGraphics *entity);
-    std::vector<float> getVerticesAll();
-    std::vector<unsigned int> getIndicesAll();
-    std::vector<float> getColorsAll();
+    std::vector<float> GetVerticesAll();
+    std::vector<unsigned int> GetIndicesAll();
+    std::vector<float> GetColorsAll();
     std::vector<float> verticesAll;
     std::vector<unsigned int> indicesAll;
     std::vector<float> colorsAll;

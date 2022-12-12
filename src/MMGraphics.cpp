@@ -2,19 +2,19 @@
 MMGraphics::MMGraphics()
 {
 }
-std::vector<float> MMGraphics::getVertices()
+std::vector<float> MMGraphics::GetVertices()
 {
     return this->vertices;
 }
-std::vector<unsigned int> MMGraphics::getIndices()
+std::vector<unsigned int> MMGraphics::GetIndices()
 {
     return this->indices;
 }
-std::vector<float> MMGraphics::getColor()
+std::vector<float> MMGraphics::GetColor()
 {
     return this->color;
 }
-int MMGraphics::getIndCount()
+int MMGraphics::GetIndCount()
 {
     return this->indCount;
 }

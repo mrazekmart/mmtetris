@@ -12,45 +12,45 @@ MMStone3d::~MMStone3d()
 {
     delete (this->mmCube);
 }
-MMCube *MMStone3d::getCube()
+MMCube *MMStone3d::GetCube()
 {
-    this->updateCube();
+    this->UpdateCube();
     return this->mmCube;
 }
-int MMStone3d::getMaterial()
+int MMStone3d::GetMaterial()
 {
     return this->material;
 }
-void MMStone3d::updateCube()
+void MMStone3d::UpdateCube()
 {
     this->mmCube->posX = this->positionX;
     this->mmCube->posY = this->positionY;
     this->mmCube->posZ = this->positionZ;
 }
-void MMStone3d::update(MMParticleMatrix *particleMatrix)
+void MMStone3d::Update(MMParticleMatrix *particleMatrix)
 {
-    this->updateCube();
+    this->UpdateCube();
 }
-void MMStone3d::moveDown()
+void MMStone3d::MoveDown()
 {
     this->positionY += this->particleSize;
-    this->updateCube();
+    this->UpdateCube();
 }
-void MMStone3d::moveUp()
+void MMStone3d::MoveUp()
 {
     this->positionY -= this->particleSize;
-    this->updateCube();
+    this->UpdateCube();
 }
-void MMStone3d::moveRight()
+void MMStone3d::MoveRight()
 {
     this->positionX += this->particleSize;
-    this->updateCube();
+    this->UpdateCube();
 }
-void MMStone3d::moveLeft()
+void MMStone3d::MoveLeft()
 {
     this->positionX -= this->particleSize;
-    this->updateCube();
+    this->UpdateCube();
 }
-void MMStone3d::updateVertices()
+void MMStone3d::UpdateVertices()
 {
 }

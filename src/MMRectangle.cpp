@@ -15,7 +15,7 @@ MMRectangle::MMRectangle(float _posX, float _posY, float _width, float _heigh)
         0.0f, 1.f, 0.02f};
 }
 
-std::vector<float> MMRectangle::mmCalculateVertices()
+std::vector<float> MMRectangle::MmCalculateVertices()
 {
     std::vector<float> vertices;
 
@@ -52,22 +52,22 @@ std::vector<float> MMRectangle::mmCalculateVertices()
     return vertices;
 }
 
-std::vector<float> MMRectangle::getVertices()
+std::vector<float> MMRectangle::GetVertices()
 {
     this->vertices.clear();
-    return mmCalculateVertices();
+    return MmCalculateVertices();
 }
 
-std::vector<unsigned int> MMRectangle::getIndices()
+std::vector<unsigned int> MMRectangle::GetIndices()
 {
     return this->indices;
 }
 
-std::vector<float> MMRectangle::getColor()
+std::vector<float> MMRectangle::GetColor()
 {
     return this->color;
 }
-int MMRectangle::getIndCount()
+int MMRectangle::GetIndCount()
 {
     return this->indCount;
 }

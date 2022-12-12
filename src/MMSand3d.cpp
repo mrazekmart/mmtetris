@@ -15,25 +15,25 @@ MMSand3d::~MMSand3d()
 {
     delete (this->mmCube);
 }
-MMCube *MMSand3d::getCube()
+MMCube *MMSand3d::GetCube()
 {
-    this->updateCube();
+    this->UpdateCube();
     return this->mmCube;
 }
-bool MMSand3d::getSkipUpdate()
+bool MMSand3d::GetSkipUpdate()
 {
     return this->skipUpdate;
 }
-int MMSand3d::getMaterial()
+int MMSand3d::GetMaterial()
 {
     return this->material;
 }
-void MMSand3d::updateCube()
+void MMSand3d::UpdateCube()
 {
     this->mmCube->posX = this->positionX;
     this->mmCube->posY = this->positionY;
 }
-void MMSand3d::update(MMParticleMatrix *particleMatrix)
+void MMSand3d::Update(MMParticleMatrix *particleMatrix)
 {
 
     if (this->skipUpdate)
@@ -41,20 +41,20 @@ void MMSand3d::update(MMParticleMatrix *particleMatrix)
     if (0 < this->matPosX < 800 / particleSize - 20 && 0 < this->matPosY < 800 / particleSize - 20)
     {
         int r = rand() % 2;
-        MMParticle *nextParticle = particleMatrix->get(this->matPosX, this->matPosY + 1);
+        MMParticle *nextParticle = particleMatrix->Get(this->matPosX, this->matPosY + 1);
         if (nextParticle == nullptr)
         {
-            particleMatrix->setElementAtIndex(this->matPosX, this->matPosY + 1, this);
-            particleMatrix->setElementAtIndex(this->matPosX, this->matPosY, nullptr);
+            particleMatrix->SetElementAtIndex(this->matPosX, this->matPosY + 1, this);
+            particleMatrix->SetElementAtIndex(this->matPosX, this->matPosY, nullptr);
             this->positionY += this->particleSize;
             this->matPosY += 1;
         }
         else
         {
-            if (nextParticle->getMaterial() == 1 || nextParticle->getMaterial() == 5)
+            if (nextParticle->GetMaterial() == 1 || nextParticle->GetMaterial() == 5)
             {
-                bool left = particleMatrix->get(this->matPosX - 1, this->matPosY + 1) == nullptr;
-                bool right = particleMatrix->get(this->matPosX + 1, this->matPosY + 1) == nullptr;
+                bool left = particleMatrix->Get(this->matPosX - 1, this->matPosY + 1) == nullptr;
+                bool right = particleMatrix->Get(this->matPosX + 1, this->matPosY + 1) == nullptr;
 
                 if (left || right)
                 {
@@ -63,8 +63,8 @@ void MMSand3d::update(MMParticleMatrix *particleMatrix)
                         int side = rand() % 2;
                         if (side == 1)
                         {
-                            particleMatrix->setElementAtIndex(this->matPosX - 1, this->matPosY + 1, this);
-                            particleMatrix->setElementAtIndex(this->matPosX, this->matPosY, nullptr);
+                            particleMatrix->SetElementAtIndex(this->matPosX - 1, this->matPosY + 1, this);
+                            particleMatrix->SetElementAtIndex(this->matPosX, this->matPosY, nullptr);
                             this->positionX -= this->particleSize;
                             this->positionY += this->particleSize;
                             this->matPosX -= 1;
@@ -72,8 +72,8 @@ void MMSand3d::update(MMParticleMatrix *particleMatrix)
                         }
                         else
                         {
-                            particleMatrix->setElementAtIndex(this->matPosX + 1, this->matPosY + 1, this);
-                            particleMatrix->setElementAtIndex(this->matPosX, this->matPosY, nullptr);
+                            particleMatrix->SetElementAtIndex(this->matPosX + 1, this->matPosY + 1, this);
+                            particleMatrix->SetElementAtIndex(this->matPosX, this->matPosY, nullptr);
                             this->positionX += this->particleSize;
                             this->positionY += this->particleSize;
                             this->matPosX += 1;
@@ -82,8 +82,8 @@ void MMSand3d::update(MMParticleMatrix *particleMatrix)
                     }
                     else if (left)
                     {
-                        particleMatrix->setElementAtIndex(this->matPosX - 1, this->matPosY + 1, this);
-                        particleMatrix->setElementAtIndex(this->matPosX, this->matPosY, nullptr);
+                        particleMatrix->SetElementAtIndex(this->matPosX - 1, this->matPosY + 1, this);
+                        particleMatrix->SetElementAtIndex(this->matPosX, this->matPosY, nullptr);
                         this->positionX -= this->particleSize;
                         this->positionY += this->particleSize;
                         this->matPosX -= 1;
@@ -91,8 +91,8 @@ void MMSand3d::update(MMParticleMatrix *particleMatrix)
                     }
                     else if (right)
                     {
-                        particleMatrix->setElementAtIndex(this->matPosX + 1, this->matPosY + 1, this);
-                        particleMatrix->setElementAtIndex(this->matPosX, this->matPosY, nullptr);
+                        particleMatrix->SetElementAtIndex(this->matPosX + 1, this->matPosY + 1, this);
+                        particleMatrix->SetElementAtIndex(this->matPosX, this->matPosY, nullptr);
                         this->positionX += this->particleSize;
                         this->positionY += this->particleSize;
                         this->matPosX += 1;
@@ -106,10 +106,10 @@ void MMSand3d::update(MMParticleMatrix *particleMatrix)
             }
         }
     }
-    this->updateCube();
+    this->UpdateCube();
 
     // rewrite this
-    std::vector<float> newVertices = this->getCube()->getVertices();
+    std::vector<float> newVertices = this->GetCube()->GetVertices();
     for (int i = 0; i < newVertices.size(); i++)
     {
         MMGraphicsSingleton::getInstance().verticesAll[i + ((id - 1) * 24)] = newVertices[i];

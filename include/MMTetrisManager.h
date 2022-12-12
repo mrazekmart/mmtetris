@@ -19,9 +19,9 @@ public:
     bool moveSide = true;
     bool moveDown = false;
     bool rotate = true;
-    MMStone3d *getElementAtIndex(int x, int y);
-    void setElementAtIndex(int x, int y, MMStone3d *element);
-    void update(GLFWwindow *window);
+    MMStone3d *GetElementAtIndex(int x, int y);
+    void SetElementAtIndex(int x, int y, MMStone3d *element);
+    void Update(GLFWwindow *window);
 
 private:
     int blocksWidth, blocksHeight, particleSize;
@@ -52,15 +52,15 @@ private:
     int matrixId[50][100];
     int matrixIdCount = 0;
     MMTetrisPiece *activePiece;
-    void checkForFullLines();
-    void fallFinished();
-    void createWalls();
-    void createNewPiece();
-    void movePieceDown();
-    void movePieceLeft();
-    void movePieceRight();
-    void roratePieceLeft();
-    void roratePieceRight();
+    void CheckForFullLines();
+    void FallFinished();
+    void CreateWalls();
+    void CreateNewPiece();
+    void MovePieceDown();
+    void MovePieceLeft();
+    void MovePieceRight();
+    void RoratePieceLeft();
+    void RoratePieceRight();
 };
 
 #endif

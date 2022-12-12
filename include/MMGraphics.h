@@ -8,7 +8,7 @@ class MMGraphics
 
 public:
     MMGraphics();
-    void addEntity(MMGraphics *entity);
+    void AddEntity(MMGraphics *entity);
 
 private:
     std::vector<float> vertices;
@@ -17,10 +17,10 @@ private:
     int indCount;
 
 public:
-    virtual std::vector<float> getColor();
-    virtual std::vector<float> getVertices();
-    virtual std::vector<unsigned int> getIndices();
-    virtual int getIndCount();
+    virtual std::vector<float> GetColor();
+    virtual std::vector<float> GetVertices();
+    virtual std::vector<unsigned int> GetIndices();
+    virtual int GetIndCount();
 };
 
 #endif

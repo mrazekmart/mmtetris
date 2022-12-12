@@ -67,9 +67,9 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
-        vertices = mmGraphics.getVerticesAll();
-        indices = mmGraphics.getIndicesAll();
-        colors = mmGraphics.getColorsAll();
+        vertices = mmGraphics.GetVerticesAll();
+        indices = mmGraphics.GetIndicesAll();
+        colors = mmGraphics.GetColorsAll();
 
         auto stopMove = std::chrono::high_resolution_clock::now();
         auto durationMoveDown = std::chrono::duration_cast<std::chrono::milliseconds>(stopMove - startMoveDown);
@@ -92,7 +92,7 @@ int main()
         }
 
         camera.Inputs(window);
-        mmTetris.update(window);
+        mmTetris.Update(window);
         camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 
         VAO VAO1;

@@ -36,7 +36,7 @@ MMCube::MMCube(float _posX, float _posY, float _posZ, float _width, float _heigh
         0.0f, 1.f, 0.02f};
 }
 
-std::vector<float> MMCube::mmCalculateVertices()
+std::vector<float> MMCube::MmCalculateVertices()
 {
     std::vector<float> vertices;
 
@@ -97,22 +97,22 @@ std::vector<float> MMCube::mmCalculateVertices()
     return vertices;
 }
 
-std::vector<float> MMCube::getVertices()
+std::vector<float> MMCube::GetVertices()
 {
     this->vertices.clear();
-    return mmCalculateVertices();
+    return MmCalculateVertices();
 }
 
-std::vector<unsigned int> MMCube::getIndices()
+std::vector<unsigned int> MMCube::GetIndices()
 {
     return this->indices;
 }
 
-std::vector<float> MMCube::getColor()
+std::vector<float> MMCube::GetColor()
 {
     return this->color;
 }
-int MMCube::getIndCount()
+int MMCube::GetIndCount()
 {
     return this->indCount;
 }

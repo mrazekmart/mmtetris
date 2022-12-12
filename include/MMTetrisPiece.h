@@ -19,18 +19,18 @@ public:
     int pieceType = 1;
     int piecePhase = 0;
     int pieceNumberOfPhases = 4;
-    void moveDown();
-    void moveLeft();
-    void moveRight();
+    void MoveDown();
+    void MoveLeft();
+    void MoveRight();
     /* 
     void rorateLeft(std::vector<MMStone3d *> *matrix);
     void rotateRight(std::vector<MMStone3d *> *matrix);
      */
-    void rorateLeft(MMTetrisManager *mmTetrisManager);
-    void rotateRight(MMTetrisManager *mmTetrisManager);
-    void updateVertices();
+    void RorateLeft(MMTetrisManager *mmTetrisManager);
+    void RotateRight(MMTetrisManager *mmTetrisManager);
+    void UpdateVertices();
     //bool checkCollision(MMStone3d *mmStone, int moveX, int moveY, std::vector<MMStone3d *> *matrix);
-    bool checkCollision(MMStone3d *mmStone, int moveX, int moveY, MMTetrisManager *mmTetrisManager);
+    bool CheckCollision(MMStone3d *mmStone, int moveX, int moveY, MMTetrisManager *mmTetrisManager);
 };
 
 #endif

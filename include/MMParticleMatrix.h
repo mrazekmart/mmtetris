@@ -16,9 +16,9 @@ public:
     MMParticleMatrix(int _width, int _height);
     ~MMParticleMatrix();
 
-    MMParticle *get(int x, int y);
+    MMParticle *Get(int x, int y);
 
-    void setElementAtIndex(int x, int y, MMParticle *element);
+    void SetElementAtIndex(int x, int y, MMParticle *element);
 };
 
 #endif
